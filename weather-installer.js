@@ -6,8 +6,8 @@ const os = require("os");
 const { execSync } = require("child_process");
 
 const zshrcPath = path.join(os.homedir(), ".zshrc");
-const scriptSource = path.join(__dirname, "wth.js"); // adjust if needed
-const scriptTarget = "/usr/local/bin/wth"; // command name: `weather`
+const scriptSource = path.join(__dirname, "wth.js");
+const scriptTarget = "/usr/local/bin/wth";
 
 function askQuestion(query) {
   const rl = readline.createInterface({
@@ -48,7 +48,9 @@ function createCommand() {
     if (fs.existsSync(scriptTarget)) fs.unlinkSync(scriptTarget);
 
     fs.symlinkSync(scriptSource, scriptTarget);
-    console.log(`✅ 'weather' command installed! You can now run: weather`);
+    console.log(
+      `✅ 'wth' command installed! You can now run: wth [city-name] [optional number of days to get forecast]`
+    );
   } catch (err) {
     console.error("❌ Failed to create system command:", err.message);
     console.log(
